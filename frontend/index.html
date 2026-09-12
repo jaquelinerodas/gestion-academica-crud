@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestión Académica</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="shell">
+
+        <aside class="sidebar">
+            <div class="marca">
+                <span class="marca-nombre">Gestión Académica</span>
+                <span class="marca-sub">Registro de estudiantes y cursos</span>
+            </div>
+            <nav class="nav-lateral">
+                <button class="tab-btn activo" data-tab="profesores">Profesores</button>
+                <button class="tab-btn" data-tab="cursos">Cursos</button>
+                <button class="tab-btn" data-tab="estudiantes">Estudiantes</button>
+                <button class="tab-btn" data-tab="inscripciones">Inscripciones</button>
+                <button class="tab-btn" data-tab="consultas">Consultas</button>
+            </nav>
+        </aside>
+
+        <div class="contenido">
+
+            <header class="topbar">
+                <div class="buscador-global">
+                    <svg class="icono-buscar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="input-busqueda-global" placeholder="Buscar por nombre o código (ej. Ana, #3, Bases de Datos)...">
+                    <button id="btn-busqueda-global">Buscar</button>
+                </div>
+                <div id="resultados-busqueda-global" class="panel-resultados oculto"></div>
+            </header>
+
+            <div id="mensaje" class="mensaje oculto"></div>
+
+            <main>
+               
+                <section id="tab-profesores" class="tab-contenido">
+                    <div class="encabezado-seccion">
+                        <h2>Profesores</h2>
+                        <p>Cuerpo docente a cargo de los cursos.</p>
+                    </div>
+
+                    <div class="tarjeta">
+                        <form id="form-profesor" class="formulario">
+                            <input type="hidden" id="profesor-id">
+                            <label>Nombre*<input type="text" id="profesor-nombre" required maxlength="100"></label>
+                            <label>Email*<input type="email" id="profesor-email" required></label>
+                            <label>Especialidad<input type="text" id="profesor-especialidad" maxlength="100"></label>
+                            <div class="acciones-formulario">
+                                <button type="submit">Guardar</button>
+                                <button type="button" class="secundario btn-cancelar" data-form="form-profesor">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tarjeta tarjeta-tabla">
+                        <table>
+                            <thead><tr><th>Código</th><th>Nombre</th><th>Email</th><th>Especialidad</th><th>Acciones</th></tr></thead>
+                            <tbody id="tabla-profesores"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+             
+                <section id="tab-cursos" class="tab-contenido oculto">
+                    <div class="encabezado-seccion">
+                        <h2>Cursos</h2>
+                        <p>Cursos ofrecidos y el profesor responsable de cada uno.</p>
+                    </div>
+
+                    <div class="tarjeta">
+                        <form id="form-curso" class="formulario">
+                            <input type="hidden" id="curso-id">
+                            <label>Nombre*<input type="text" id="curso-nombre" required maxlength="100"></label>
+                            <label>Descripción<input type="text" id="curso-descripcion" maxlength="255"></label>
+                            <label>Profesor*<select id="curso-profesor" required></select></label>
+                            <div class="acciones-formulario">
+                                <button type="submit">Guardar</button>
+                                <button type="button" class="secundario btn-cancelar" data-form="form-curso">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tarjeta tarjeta-tabla">
+                        <table>
+                            <thead><tr><th>Código</th><th>Nombre</th><th>Descripción</th><th>Profesor</th><th>Acciones</th></tr></thead>
+                            <tbody id="tabla-cursos"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="tab-estudiantes" class="tab-contenido oculto">
+                    <div class="encabezado-seccion">
+                        <h2>Estudiantes</h2>
+                        <p>Estudiantes registrados en la institución.</p>
+                    </div>
+
+                    <div class="tarjeta">
+                        <form id="form-estudiante" class="formulario">
+                            <input type="hidden" id="estudiante-id">
+                            <label>Nombre*<input type="text" id="estudiante-nombre" required maxlength="100"></label>
+                            <label>Email*<input type="email" id="estudiante-email" required></label>
+                            <label>Fecha de nacimiento<input type="date" id="estudiante-fecha"></label>
+                            <label>Estado
+                                <select id="estudiante-estado">
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                </select>
+                            </label>
+                            <div class="acciones-formulario">
+                                <button type="submit">Guardar</button>
+                                <button type="button" class="secundario btn-cancelar" data-form="form-estudiante">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tarjeta tarjeta-tabla">
+                        <table>
+                            <thead><tr><th>Código</th><th>Nombre</th><th>Email</th><th>Fecha Nac.</th><th>Estado</th><th>Acciones</th></tr></thead>
+                            <tbody id="tabla-estudiantes"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+               
+                <section id="tab-inscripciones" class="tab-contenido oculto">
+                    <div class="encabezado-seccion">
+                        <h2>Inscripciones</h2>
+                        <p>Relación entre estudiantes y cursos, con nota y estado.</p>
+                    </div>
+
+                    <div class="tarjeta">
+                        <form id="form-inscripcion" class="formulario">
+                            <input type="hidden" id="inscripcion-id">
+                            <label>Estudiante*<select id="inscripcion-estudiante" required></select></label>
+                            <label>Curso*<select id="inscripcion-curso" required></select></label>
+                            <label>Fecha de inscripción*<input type="date" id="inscripcion-fecha" required></label>
+                            <label>Nota (0-100)<input type="number" id="inscripcion-nota" min="0" max="100" step="0.1"></label>
+                            <label>Estado
+                                <select id="inscripcion-estado">
+                                    <option value="inscrito">Inscrito</option>
+                                    <option value="aprobado">Aprobado</option>
+                                    <option value="reprobado">Reprobado</option>
+                                </select>
+                            </label>
+                            <div class="acciones-formulario">
+                                <button type="submit">Guardar</button>
+                                <button type="button" class="secundario btn-cancelar" data-form="form-inscripcion">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="tarjeta tarjeta-tabla">
+                        <table>
+                            <thead><tr><th>Código</th><th>Estudiante</th><th>Curso</th><th>Fecha</th><th>Nota</th><th>Estado</th><th>Acciones</th></tr></thead>
+                            <tbody id="tabla-inscripciones"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+               
+                <section id="tab-consultas" class="tab-contenido oculto">
+                    <div class="encabezado-seccion">
+                        <h2>Consultas</h2>
+                        <p>Búsquedas y reportes que cruzan información entre tablas.</p>
+                    </div>
+
+                    <div class="tarjeta bloque-consulta">
+                        <h3>Buscar estudiantes</h3>
+                        <form id="form-buscar-estudiantes" class="formulario formulario-en-linea">
+                            <label>Nombre contiene<input type="text" id="buscar-nombre" placeholder="ej. ana"></label>
+                            <label>Estado
+                                <select id="buscar-estado">
+                                    <option value="">Todos</option>
+                                    <option value="activo">Activo</option>
+                                    <option value="inactivo">Inactivo</option>
+                                </select>
+                            </label>
+                            <button type="submit">Buscar</button>
+                        </form>
+                        <table>
+                            <thead><tr><th>Código</th><th>Nombre</th><th>Email</th><th>Estado</th></tr></thead>
+                            <tbody id="resultado-busqueda-estudiantes"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="tarjeta bloque-consulta">
+                        <h3>Estudiantes inscritos en un curso</h3>
+                        <label class="etiqueta-select">Curso<select id="consulta-curso"></select></label>
+                        <table>
+                            <thead><tr><th>Estudiante</th><th>Email</th><th>Nota</th><th>Estado</th></tr></thead>
+                            <tbody id="resultado-roster-curso"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="tarjeta bloque-consulta">
+                        <h3>Historial académico de un estudiante</h3>
+                        <label class="etiqueta-select">Estudiante<select id="consulta-estudiante"></select></label>
+                        <table>
+                            <thead><tr><th>Curso</th><th>Fecha inscripción</th><th>Nota</th><th>Estado</th></tr></thead>
+                            <tbody id="resultado-historial-estudiante"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="tarjeta bloque-consulta">
+                        <h3>Resumen por curso</h3>
+                        <table>
+                            <thead><tr><th>Curso</th><th>Profesor</th><th>Total estudiantes</th><th>Promedio de nota</th></tr></thead>
+                            <tbody id="resultado-resumen-cursos"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
