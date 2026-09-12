@@ -86,26 +86,19 @@ Además del CRUD básico, la API permite:
    ```
    cd backend
    ```
-3. Crear un entorno virtual (opcional pero recomendado):
-   ```
-   python -m venv venv
-   source venv/bin/activate      # En Windows: venv\Scripts\activate
-   ```
-4. Instalar dependencias:
+5. Instalar dependencias:
    ```
    pip install -r requirements.txt
    ```
-5. Configurar la conexión a la base de datos: copiar `.env.example` como
+6. Configurar la conexión a la base de datos: 
    `.env` y ajustar usuario, contraseña, host, puerto y nombre de la BD
-   según tu instalación local de PostgreSQL:
+   según  instalación local de PostgreSQL:
    ```
-   cp .env.example .env
-   ```
-6. Levantar el servidor:
+7. Levantar el servidor:
    ```
    uvicorn main:app --reload
    ```
-7. La API quedará disponible en `http://127.0.0.1:8000`. Si PostgreSQL no
+8. La API quedará disponible en `http://127.0.0.1:8000`. Si PostgreSQL no
    está corriendo o las credenciales son incorrectas, el servidor igual
    arranca pero muestra una advertencia en consola, y cualquier endpoint
    que use la base de datos responderá `503` con un mensaje claro en vez
@@ -117,7 +110,7 @@ Además del CRUD básico, la API permite:
    cd frontend
    ```
 2. Abrir el archivo `index.html` directamente en el navegador
-   (doble clic, o con la extensión "Live Server" de VS Code).
+
 3. Asegurarse de que el backend esté corriendo en `http://127.0.0.1:8000`,
    ya que el frontend consume esa URL (definida en `app.js` en la constante
    `API_URL`).
